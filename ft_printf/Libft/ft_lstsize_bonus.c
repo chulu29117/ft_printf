@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 09:59:25 by clu               #+#    #+#             */
-/*   Updated: 2024/11/15 12:06:49 by clu              ###   ########.fr       */
+/*   Created: 2024/11/06 10:56:23 by clu               #+#    #+#             */
+/*   Updated: 2024/11/07 10:19:22 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <libft.h>
+int	ft_lstsize(t_list *lst)
+{
+	int		size;
 
-int		ft_printf(const char *, ...);
-
-int		ft_putchar_fd(char c, int fd);
-int		ft_putstr_fd(char *s, int fd);
-int		ft_putnbr_fd(int n, int fd);
-
-
-
-#endif
-
+	size = 0;
+	while (lst)
+	{
+		size++;
+		lst = lst->next;
+	}
+	return (size);
+}

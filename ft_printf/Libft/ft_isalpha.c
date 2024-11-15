@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 09:59:25 by clu               #+#    #+#             */
-/*   Updated: 2024/11/15 12:06:49 by clu              ###   ########.fr       */
+/*   Created: 2024/10/28 15:08:36 by clu               #+#    #+#             */
+/*   Updated: 2024/10/30 15:03:40 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <libft.h>
-
-int		ft_printf(const char *, ...);
-
-int		ft_putchar_fd(char c, int fd);
-int		ft_putstr_fd(char *s, int fd);
-int		ft_putnbr_fd(int n, int fd);
-
-
-
-#endif
-
+int	ft_isalpha(int c)
+{
+	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
+}

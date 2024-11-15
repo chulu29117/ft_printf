@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 09:59:25 by clu               #+#    #+#             */
-/*   Updated: 2024/11/15 12:06:49 by clu              ###   ########.fr       */
+/*   Created: 2024/10/30 14:16:34 by clu               #+#    #+#             */
+/*   Updated: 2024/11/04 20:45:18 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <libft.h>
+char	*ft_strrchr(const char *s, int c)
+{
+	char			*last_occurrence;
+	unsigned char	uc;
 
-int		ft_printf(const char *, ...);
-
-int		ft_putchar_fd(char c, int fd);
-int		ft_putstr_fd(char *s, int fd);
-int		ft_putnbr_fd(int n, int fd);
-
-
-
-#endif
-
+	uc = (unsigned char)c;
+	last_occurrence = NULL;
+	while (*s)
+	{
+		if (*s == uc)
+			last_occurrence = (char *)s;
+		s++;
+	}
+	if (*s == uc)
+		last_occurrence = (char *)s;
+	return (last_occurrence);
+}

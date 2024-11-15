@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 09:59:25 by clu               #+#    #+#             */
-/*   Updated: 2024/11/15 12:06:49 by clu              ###   ########.fr       */
+/*   Created: 2024/10/30 14:26:52 by clu               #+#    #+#             */
+/*   Updated: 2024/11/12 17:15:21 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <libft.h>
+char	*ft_strnstr(const char *big, const char *little, size_t len)
+{
+	size_t	i;
+	size_t	j;
 
-int		ft_printf(const char *, ...);
-
-int		ft_putchar_fd(char c, int fd);
-int		ft_putstr_fd(char *s, int fd);
-int		ft_putnbr_fd(int n, int fd);
-
-
-
-#endif
-
+	if (*little == '\0')
+		return ((char *)big);
+	i = 0;
+	while (big[i] != '\0' && i < len)
+	{
+		j = 0;
+		while (big[i + j] == little[j] && (i + j) < len)
+		{
+			if (little[j + 1] == '\0')
+				return ((char *)&big[i]);
+			j++;
+		}
+		i++;
+	}
+	return (NULL);
+}

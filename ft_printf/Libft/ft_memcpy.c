@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 09:59:25 by clu               #+#    #+#             */
-/*   Updated: 2024/11/15 12:06:49 by clu              ###   ########.fr       */
+/*   Created: 2024/10/31 11:20:14 by clu               #+#    #+#             */
+/*   Updated: 2024/11/04 20:34:07 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <libft.h>
+void	*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	size_t		i;
+	char		*ptr_dest;
+	char		*ptr_src;
 
-int		ft_printf(const char *, ...);
-
-int		ft_putchar_fd(char c, int fd);
-int		ft_putstr_fd(char *s, int fd);
-int		ft_putnbr_fd(int n, int fd);
-
-
-
-#endif
-
+	if (!dest && !src && n > 0)
+		return (NULL);
+	i = 0;
+	ptr_dest = (char *)dest;
+	ptr_src = (char *)src;
+	while (i < n)
+	{
+		ptr_dest[i] = ptr_src[i];
+		i++;
+	}
+	return (dest);
+}

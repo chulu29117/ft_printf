@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../ft_printf"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"libft.h": "c"
+		},
+		"json.schemas": [
+
+		],
+		"editor.inlineSuggest.enabled": true
+	}
+}
