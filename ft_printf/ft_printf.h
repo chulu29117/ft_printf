@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 09:48:09 by clu               #+#    #+#             */
-/*   Updated: 2024/11/01 12:44:56 by clu              ###   ########.fr       */
+/*   Created: 2024/11/13 09:59:25 by clu               #+#    #+#             */
+/*   Updated: 2024/11/15 12:11:52 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-size_t	ft_strlen(const char *str)
-{
-	int	i;
+# include <stdarg.h>
+# include <unistd.h>
+# include <stdlib.h>
 
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
+int		ft_printf(const char *, ...);
+
+int		ft_putchar_fd(char c, int fd);
+int		ft_putstr_fd(char *s, int fd);
+int		ft_putnbr_fd(int n, int fd);
+
+
+
+#endif
+

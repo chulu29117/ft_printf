@@ -6,11 +6,11 @@
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:38:18 by clu               #+#    #+#             */
-/*   Updated: 2024/11/15 11:29:37 by clu              ###   ########.fr       */
+/*   Updated: 2024/11/15 12:13:16 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_putchar_fd(char c, int fd)
 {
