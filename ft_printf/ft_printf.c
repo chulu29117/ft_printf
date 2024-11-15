@@ -6,7 +6,7 @@
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 10:19:31 by clu               #+#    #+#             */
-/*   Updated: 2024/11/15 17:20:37 by clu              ###   ########.fr       */
+/*   Updated: 2024/11/15 17:27:44 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_putchar_fd(char c, int fd);
 int	ft_putstr_fd(char *s, int fd);
 int	ft_putnbr_fd(int n, int fd);
 int	ft_format_check(char specifier, va_list args);
+int	ft_puthex_fd(unsigned long long num, int fd);
+int	ft_putptr_fd(char **ptr, int fd);
 
 // ft_printf() //
 int ft_printf(const char *str, ...)
@@ -54,6 +56,9 @@ void	ft_printf_test(void)
 	ft_printf("ft_printf(), print a string: %s\n", "Hello, world!");
 	printf("printf(), print a string: %s\n\n", "Hello, world!");
 
+	ft_printf("ft_printf(), print a pointer: %p\n", &ft_printf_test);
+	printf("printf(), print a pointer: %p\n\n", &ft_printf_test);
+
 	ft_printf("ft_printf(), print a number: %d\n", 25);
 	printf("printf(), print a number: %d\n", 25);
 }
@@ -71,6 +76,8 @@ int	ft_format_check(char specifier, va_list args)
 		return (ft_putchar_fd(va_arg(args, int), 1));
 	else if (specifier == 's')
 		return (ft_putstr_fd(va_arg(args, char *), 1));
+	else if (specifier == 'p')
+		return (ft_putptr_fd(va_arg(args, char **), 1));
 	else if (specifier == 'd')
 		return (ft_putnbr_fd(va_arg(args, int), 1));
 	return (0);
@@ -129,4 +136,13 @@ int	ft_puthex_fd(unsigned long long num, int fd)
 	return (count);
 }
 
+int	ft_putptr_fd(char **ptr, int fd)
+{
+	int	count;
 
+	count = 0;
+	ft_putstr_fd("0x", fd);
+	count += 2;
+	count += ft_puthex_fd((unsigned long long)ptr, fd);
+	return (count);
+}

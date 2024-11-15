@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_format_check.c                                  :+:      :+:    :+:   */
+/*   ft_putptr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 17:03:14 by clu               #+#    #+#             */
-/*   Updated: 2024/11/15 17:26:32 by clu              ###   ########.fr       */
+/*   Created: 2024/11/15 17:24:58 by clu               #+#    #+#             */
+/*   Updated: 2024/11/15 17:26:10 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_printf.h"
 
-int	ft_format_check(char specifier, va_list args)
+int	ft_putptr_fd(char **ptr, int fd)
 {
-	if (specifier == 'c')
-		return (ft_putchar_fd(va_arg(args, int), 1));
-	else if (specifier == 's')
-		return (ft_putstr_fd(va_arg(args, char *), 1));
-	else if (specifier == 'p')
-		return (ft_putptr_fd(va_arg(args, char **), 1));
-	else if (specifier == 'd')
-		return (ft_putnbr_fd(va_arg(args, int), 1));
-	return (0);
+	int	count;
+
+	count = 0;
+	ft_putstr_fd("0x", fd);
+	count += 2;
+	count += ft_puthex_fd((unsigned long long)ptr, fd);
+	return (count);
 }
+	
