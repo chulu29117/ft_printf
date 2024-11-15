@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putptr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 09:59:25 by clu               #+#    #+#             */
-/*   Updated: 2024/11/15 17:20:19 by clu              ###   ########.fr       */
+/*   Created: 2024/11/15 17:13:38 by clu               #+#    #+#             */
+/*   Updated: 2024/11/15 17:20:08 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+# include "ft_printf.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include <stdlib.h>
+int	ft_puthex_fd(unsigned long long num, int fd)
+{
+	int count;
+	char	*hex_digits;
 
-int		ft_printf(const char *, ...);
+	hex_digits = "0123456789abcdef";
+	count = 0;
 
-int		ft_putchar_fd(char c, int fd);
-int		ft_putstr_fd(char *s, int fd);
-int		ft_putnbr_fd(int n, int fd);
-int		ft_format_check(char specifier, va_list args);
-int		ft_puthex_fd(unsigned long long num, int fd);
-
-
-
-
-#endif
-
+	if (num >= 16)
+		count += ft_puthex_fd(num / 16, fd);
+	count += ft_putchar_fd(hex_digits[num % 16], fd);
+	return (count);
+}

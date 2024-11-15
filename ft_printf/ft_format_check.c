@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_format_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 09:59:25 by clu               #+#    #+#             */
-/*   Updated: 2024/11/15 17:20:19 by clu              ###   ########.fr       */
+/*   Created: 2024/11/15 17:03:14 by clu               #+#    #+#             */
+/*   Updated: 2024/11/15 17:13:24 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+# include "ft_printf.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include <stdlib.h>
-
-int		ft_printf(const char *, ...);
-
-int		ft_putchar_fd(char c, int fd);
-int		ft_putstr_fd(char *s, int fd);
-int		ft_putnbr_fd(int n, int fd);
-int		ft_format_check(char specifier, va_list args);
-int		ft_puthex_fd(unsigned long long num, int fd);
-
-
-
-
-#endif
-
+int	ft_format_check(char specifier, va_list args)
+{
+	if (specifier == 'c')
+		return (ft_putchar_fd(va_arg(args, int), 1));
+	else if (specifier == 's')
+		return (ft_putstr_fd(va_arg(args, char *), 1));
+	else if (specifier == 'p')
+		return (ft_putptr_fd(va_arg(args, void *), 1));
+	else if (specifier == 'd')
+		return (ft_putnbr_fd(va_arg(args, int), 1));
+	return (0);
+}
