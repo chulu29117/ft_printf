@@ -6,7 +6,7 @@
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 17:03:14 by clu               #+#    #+#             */
-/*   Updated: 2024/11/18 12:58:30 by clu              ###   ########.fr       */
+/*   Updated: 2024/11/18 13:21:07 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	ft_format_check(char specifier, va_list args)
 	else if (specifier == 'd' || specifier == 'i')
 		return (ft_putnbr(va_arg(args, int)));
 	else if (specifier == 'i')
-		return (ft_putnbr_i(va_arg(args, int)));
+		return (ft_putnbr(va_arg(args, int)));
 	else if (specifier == 'x')
-		return (ft_puthex_low(va_arg(args, unsigned int)));
+		return (ft_puthex(va_arg(args, unsigned long long)));
 	else if (specifier == 'X')
 		return (ft_puthex_up(va_arg(args, unsigned int)));
 	else if (specifier == 'u')
-		return (ft_putnbr(va_arg(args, unsigned int)));
+		return (ft_putnbr_i(va_arg(args, unsigned int)));
 	else if (specifier == '%')
 		return (ft_putchar('%'));
 	return (0);
