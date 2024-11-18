@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_puthex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 10:19:31 by clu               #+#    #+#             */
-/*   Updated: 2024/11/18 12:23:53 by clu              ###   ########.fr       */
+/*   Created: 2024/11/15 17:13:38 by clu               #+#    #+#             */
+/*   Updated: 2024/11/18 12:24:38 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *str, ...)
+int	ft_puthex(unsigned long long num)
 {
-	va_list	args;
-	int		i;
 	int		count;
+	char	*hex_digits;
 
-	va_start(args, str);
-	i = 0;
+	hex_digits = "0123456789abcdef";
 	count = 0;
-	while (str[i])
-	{
-		if (str[i] == '%' && str[i + 1] != '\0')
-		{
-			i++;
-			count += ft_format_check(str[i], args);
-		}
-		else
-			count += ft_putchar(str[i]);
-		i++;
-	}
-	va_end(args);
+	if (num >= 16)
+		count += ft_puthex(num / 16);
+	count += ft_putchar(hex_digits[num % 16]);
 	return (count);
 }

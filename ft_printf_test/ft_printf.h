@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 10:19:31 by clu               #+#    #+#             */
-/*   Updated: 2024/11/18 12:23:53 by clu              ###   ########.fr       */
+/*   Created: 2024/11/13 09:59:25 by clu               #+#    #+#             */
+/*   Updated: 2024/11/18 12:22:15 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	ft_printf(const char *str, ...)
-{
-	va_list	args;
-	int		i;
-	int		count;
+# include <stdarg.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <limits.h>
 
-	va_start(args, str);
-	i = 0;
-	count = 0;
-	while (str[i])
-	{
-		if (str[i] == '%' && str[i + 1] != '\0')
-		{
-			i++;
-			count += ft_format_check(str[i], args);
-		}
-		else
-			count += ft_putchar(str[i]);
-		i++;
-	}
-	va_end(args);
-	return (count);
-}
+int		ft_printf(const char *str, ...);
+
+int		ft_format_check(char specifier, va_list args);
+
+int		ft_putchar(char c);
+int		ft_putstr(char *s);
+int		ft_putnbr(int n);
+int		ft_puthex(unsigned long long num);
+int		ft_putptr(void *ptr);
+
+#endif
+

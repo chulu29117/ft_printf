@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 10:19:31 by clu               #+#    #+#             */
-/*   Updated: 2024/11/18 12:23:53 by clu              ###   ########.fr       */
+/*   Created: 2024/11/05 17:00:56 by clu               #+#    #+#             */
+/*   Updated: 2024/11/18 12:24:51 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *str, ...)
+int	ft_putnbr(int n)
 {
-	va_list	args;
-	int		i;
 	int		count;
 
-	va_start(args, str);
-	i = 0;
 	count = 0;
-	while (str[i])
+	if (n == INT_MIN)
 	{
-		if (str[i] == '%' && str[i + 1] != '\0')
-		{
-			i++;
-			count += ft_format_check(str[i], args);
-		}
-		else
-			count += ft_putchar(str[i]);
-		i++;
+		count += ft_putstr("-2147483648");
+		return (count);
 	}
-	va_end(args);
+	if (n < 0)
+	{
+		count += ft_putchar('-');
+		n = -n;
+	}
+	if (n >= 10)
+		count += ft_putnbr(n / 10);
+	count += ft_putchar(n % 10 + '0');
 	return (count);
 }

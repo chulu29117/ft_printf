@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 10:19:31 by clu               #+#    #+#             */
-/*   Updated: 2024/11/18 12:23:53 by clu              ###   ########.fr       */
+/*   Created: 2024/11/05 16:50:04 by clu               #+#    #+#             */
+/*   Updated: 2024/11/18 10:48:13 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *str, ...)
+int	ft_putstr(char *s)
 {
-	va_list	args;
-	int		i;
-	int		count;
-
-	va_start(args, str);
-	i = 0;
+	int	count;
+	
+	if (!s)
+		s = "(null)";
 	count = 0;
-	while (str[i])
+	while (*s)
 	{
-		if (str[i] == '%' && str[i + 1] != '\0')
-		{
-			i++;
-			count += ft_format_check(str[i], args);
-		}
-		else
-			count += ft_putchar(str[i]);
-		i++;
+		count += ft_putchar(*s);
+		s++;
 	}
-	va_end(args);
 	return (count);
 }
+

@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_putptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 10:19:31 by clu               #+#    #+#             */
-/*   Updated: 2024/11/18 12:23:53 by clu              ###   ########.fr       */
+/*   Created: 2024/11/15 17:24:58 by clu               #+#    #+#             */
+/*   Updated: 2024/11/18 12:26:45 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *str, ...)
+int	ft_putptr(void *ptr)
 {
-	va_list	args;
-	int		i;
-	int		count;
+	int	count;
+	int	res;
 
-	va_start(args, str);
-	i = 0;
+	if (ptr == NULL)
+		return (ft_putstr("(nil)"));
 	count = 0;
-	while (str[i])
-	{
-		if (str[i] == '%' && str[i + 1] != '\0')
-		{
-			i++;
-			count += ft_format_check(str[i], args);
-		}
-		else
-			count += ft_putchar(str[i]);
-		i++;
-	}
-	va_end(args);
+	res = ft_putstr("0x");
+	if (res < 0)
+		return (-1);
+	count += res;
+	res = ft_puthex((unsigned long long)ptr);
+	if (res < 0)
+		return (-1);
+	count += res;
 	return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:50:04 by clu               #+#    #+#             */
-/*   Updated: 2024/11/18 10:48:13 by clu              ###   ########.fr       */
+/*   Updated: 2024/11/18 12:18:05 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_putstr(char *s)
 {
 	int	count;
-	
+
 	if (!s)
 		s = "(null)";
 	count = 0;
@@ -26,4 +26,3 @@ int	ft_putstr(char *s)
 	}
 	return (count);
 }
-
