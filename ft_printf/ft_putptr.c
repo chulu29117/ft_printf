@@ -6,7 +6,7 @@
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 17:24:58 by clu               #+#    #+#             */
-/*   Updated: 2024/11/18 10:48:36 by clu              ###   ########.fr       */
+/*   Updated: 2024/11/18 11:28:47 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	ft_putptr(void *ptr)
 	res = ft_puthex((unsigned long long)ptr);
 	if (res < 0)
 		return (-1);
+	count += res;
 	return (count);
 }
 	

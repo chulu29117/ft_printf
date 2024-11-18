@@ -6,7 +6,7 @@
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:00:56 by clu               #+#    #+#             */
-/*   Updated: 2024/11/18 10:48:22 by clu              ###   ########.fr       */
+/*   Updated: 2024/11/18 11:31:23 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ int	ft_putnbr(int n)
 	int		count;
 	
 	count = 0;
-	if (n == -2147483648)
-		ft_putstr("-2147483648");
+	if (n == INT_MIN)
+	{
+		count += ft_putstr("-2147483648");
+		return (count);
+	}
 	if (n < 0)
 	{
 		count += ft_putchar('-');
