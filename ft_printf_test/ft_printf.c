@@ -6,13 +6,13 @@
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 10:19:31 by clu               #+#    #+#             */
-/*   Updated: 2024/11/18 13:29:16 by clu              ###   ########.fr       */
+/*   Updated: 2024/11/18 13:46:23 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// Prototypes //
+// Prototypes ///////////////////////////////////////////////////////////////////////
 int		ft_printf(const char *str, ...);
 int		ft_format_check(char specifier, va_list args);
 int		ft_putchar(char c);
@@ -24,7 +24,7 @@ int		ft_puthex_low(unsigned int n);
 int		ft_puthex_up(unsigned int n);
 int		ft_putptr(void *ptr);
 
-// ft_printf() //
+// ft_printf() ///////////////////////////////////////////////////////////////////////
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;
@@ -179,8 +179,12 @@ void	ft_printf_test_hex_lower(void)
 	ret2 = printf("printf(), print 255: %x\n", 255);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
-	ret1 = ft_printf("ft_printf(), print 0: %x\n", 0);
-	ret2 = printf("printf(), print 0: %x\n", 0);
+	ret1 = ft_printf("ft_printf(), print 0x1234abcdu: %x\n", 0x1234abcdu);
+	ret2 = printf("printf(), print 0x1234abcdu: %x\n", 0x1234abcdu);
+	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
+
+	ret1 = ft_printf("ft_printf(), print -0x1234abcdu: %x\n", -0x1234abcdu);
+	ret2 = printf("printf(), print -0x1234abcdu: %x\n", -0x1234abcdu);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 	printf("----------------------------------------------\n");
 }
@@ -188,7 +192,6 @@ void	ft_printf_test_hex_lower(void)
 void	ft_printf_test_hex_upper(void)
 {
 	printf("This test will print hexadecimal (base 16) uppercase numbers\n");
-	
 	int ret1 = 0;
 	int ret2 = 0;
 
@@ -196,8 +199,12 @@ void	ft_printf_test_hex_upper(void)
 	ret2 = printf("printf(), print 255: %X\n", 255);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
-	ret1 = ft_printf("ft_printf(), print 0: %X\n", 0);
-	ret2 = printf("printf(), print 0: %X\n", 0);
+	ret1 = ft_printf("ft_printf(), print 0x1234abcdu: %X\n", 0x1234abcdu);
+	ret2 = printf("printf(), print 0x1234abcdu: %X\n", 0x1234abcdu);
+	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
+
+	ret1 = ft_printf("ft_printf(), print -0x1234abcdu: %X\n", -0x1234abcdu);
+	ret2 = printf("printf(), print -0x1234abcdu: %X\n", -0x1234abcdu);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 	printf("----------------------------------------------\n");
 }
