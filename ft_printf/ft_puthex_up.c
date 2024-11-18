@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putptr.c                                        :+:      :+:    :+:   */
+/*   ft_puthex_up.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 17:24:58 by clu               #+#    #+#             */
-/*   Updated: 2024/11/18 12:56:34 by clu              ###   ########.fr       */
+/*   Created: 2024/11/18 12:50:11 by clu               #+#    #+#             */
+/*   Updated: 2024/11/18 12:53:51 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putptr(void *ptr)
+int	ft_puthex_up(unsigned int n)
 {
-	int	count;
-	int	res;
+	int		count;
+	char	*hex_digits;
 
+	hex_digits = "0123456789ABCDEF";
 	count = 0;
-	if (ptr == NULL)
-		return (ft_putstr("(nil)"));
-	res = ft_putstr("0x");
-	if (res < 0)
-		return (-1);
-	count += res;
-	res = ft_puthex_low((unsigned long long int)ptr);
-	if (res < 0)
-		return (-1);
-	count += res;
+	if (n >= 16)
+		count += ft_puthex_up(n / 16);
+	count += ft_putchar(hex_digits[n % 16]);
 	return (count);
 }

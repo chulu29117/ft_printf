@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthex.c                                        :+:      :+:    :+:   */
+/*   ft_puthex_low.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 17:13:38 by clu               #+#    #+#             */
-/*   Updated: 2024/11/18 12:24:28 by clu              ###   ########.fr       */
+/*   Created: 2024/11/18 12:50:19 by clu               #+#    #+#             */
+/*   Updated: 2024/11/18 12:53:44 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_puthex(unsigned long long num)
+int	ft_puthex_low(unsigned int n)
 {
 	int		count;
 	char	*hex_digits;
 
 	hex_digits = "0123456789abcdef";
 	count = 0;
-	if (num >= 16)
-		count += ft_puthex(num / 16);
-	count += ft_putchar(hex_digits[num % 16]);
+	if (n >= 16)
+		count += ft_puthex_low(n / 16);
+	count += ft_putchar(hex_digits[n % 16]);
 	return (count);
 }
