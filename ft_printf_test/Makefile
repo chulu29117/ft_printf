@@ -6,7 +6,7 @@
 #    By: clu <clu@student.hive.fi>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/13 09:56:36 by clu               #+#    #+#              #
-#    Updated: 2024/11/18 12:29:02 by clu              ###   ########.fr        #
+#    Updated: 2024/11/18 13:08:13 by clu              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-SOURCES = 	ft_printf.c ft_putchar.c ft_putstr.c ft_putnbr.c ft_puthex.c ft_putptr.c \
-			ft_format_check.c
+SOURCES = 	ft_printf.c ft_putchar.c ft_putstr.c ft_putnbr.c ft_putnbr_i.c \
+			ft_puthex.c ft_puthex_up.c ft_putptr.c ft_format_check.c
 		  
 OBJECTS = $(SOURCES:.c=.o)
 

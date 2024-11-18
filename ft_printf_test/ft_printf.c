@@ -6,19 +6,23 @@
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 10:19:31 by clu               #+#    #+#             */
-/*   Updated: 2024/11/18 12:23:56 by clu              ###   ########.fr       */
+/*   Updated: 2024/11/18 13:29:16 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 // Prototypes //
-int	ft_putchar(char c);
-int	ft_putstr(char *s);
-int	ft_putnbr(int n);
-int	ft_format_check(char specifier, va_list args);
-int	ft_puthex(unsigned long long num);
-int	ft_putptr(void *ptr);
+int		ft_printf(const char *str, ...);
+int		ft_format_check(char specifier, va_list args);
+int		ft_putchar(char c);
+int		ft_putstr(char *s);
+int		ft_putnbr(int n);
+int		ft_putnbr_i(unsigned int n);
+int		ft_puthex(unsigned long long n);
+int		ft_puthex_low(unsigned int n);
+int		ft_puthex_up(unsigned int n);
+int		ft_putptr(void *ptr);
 
 // ft_printf() //
 int	ft_printf(const char *str, ...)
@@ -158,14 +162,14 @@ void	ft_printf_test_unsigned(void)
 	ret2 = printf("printf(), print 123456: %u\n", 123456);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
-	ret1 = ft_printf("ft_printf(), print 0: %u\n", 0);
-	ret2 = printf("printf(), print 0: %u\n", 0);
+	ret1 = ft_printf("ft_printf(), print 0: %u\n", -1);
+	ret2 = printf("printf(), print 0: %u\n", -1);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 	printf("----------------------------------------------\n");
 }
 
 // Test %x hexadecimal (base 16) lowercase with ft_printf() and printf() //
-void	ft_printf_test_hexlower(void)
+void	ft_printf_test_hex_lower(void)
 {
 	printf("This test will print hexadecimal (base 16) lowercase numbers\n");
 	int ret1 = 0;
@@ -221,7 +225,7 @@ int	main(void)
 	ft_printf_test_decimal();
 	ft_printf_test_integer();
 	ft_printf_test_unsigned();
-	ft_printf_test_hexlower();
+	ft_printf_test_hex_lower();
 	ft_printf_test_hex_upper();
 	ft_printf_test_percent();
 	return (0);
@@ -235,15 +239,17 @@ int	ft_format_check(char specifier, va_list args)
 	else if (specifier == 's')
 		return (ft_putstr(va_arg(args, char *)));
 	else if (specifier == 'p')
-		return (ft_putptr(va_arg(args, char **)));
+		return (ft_putptr(va_arg(args, void *)));
 	else if (specifier == 'd' || specifier == 'i')
 		return (ft_putnbr(va_arg(args, int)));
-	else if (specifier == 'u')
-		return (ft_putnbr(va_arg(args, unsigned int)));
+	else if (specifier == 'i')
+		return (ft_putnbr(va_arg(args, int)));
 	else if (specifier == 'x')
-		return (ft_puthex(va_arg(args, unsigned long long int)));
+		return (ft_puthex_low(va_arg(args, unsigned int)));
 	else if (specifier == 'X')
-		return (ft_puthex(va_arg(args, unsigned long long int)));
+		return (ft_puthex_up(va_arg(args, unsigned int)));
+	else if (specifier == 'u')
+		return (ft_putnbr_i(va_arg(args, unsigned int)));
 	else if (specifier == '%')
 		return (ft_putchar('%'));
 	return (0);
@@ -294,17 +300,57 @@ int	ft_putnbr(int n)
 	return (count);
 }
 
-// print hexidecimal //
-int	ft_puthex(unsigned long long num)
+// print unsigned int //
+int	ft_putnbr_i(unsigned int n)
 {
-	int 	count;
+	int		count;
+
+	count = 0;
+	if (n >= 10)
+		count += ft_putnbr(n / 10);
+	count += ft_putchar(n % 10 + '0');
+	return (count);
+}
+
+// print hexidecimal lower//
+int	ft_puthex(unsigned long long n)
+{
+	int		count;
 	char	*hex_digits;
 
 	hex_digits = "0123456789abcdef";
 	count = 0;
-	if (num >= 16)
-		count += ft_puthex(num / 16);
-	count += ft_putchar(hex_digits[num % 16]);
+	if (n >= 16)
+		count += ft_puthex(n / 16);
+	count += ft_putchar(hex_digits[n % 16]);
+	return (count);
+}
+
+// print hexidecimal lower //
+int	ft_puthex_low(unsigned int n)
+{
+	int		count;
+	char	*hex_digits;
+
+	hex_digits = "0123456789abcdef";
+	count = 0;
+	if (n >= 16)
+		count += ft_puthex_low(n / 16);
+	count += ft_putchar(hex_digits[n % 16]);
+	return (count);
+}
+
+// print hexidecimal upper //
+int	ft_puthex_up(unsigned int n)
+{
+	int		count;
+	char	*hex_digits;
+
+	hex_digits = "0123456789ABCDEF";
+	count = 0;
+	if (n >= 16)
+		count += ft_puthex_up(n / 16);
+	count += ft_putchar(hex_digits[n % 16]);
 	return (count);
 }
 
@@ -312,16 +358,16 @@ int	ft_puthex(unsigned long long num)
 int	ft_putptr(void *ptr)
 {
 	int	count;
-	int res;
+	int	res;
 
+	count = 0;
 	if (ptr == NULL)
 		return (ft_putstr("(nil)"));
-	count = 0;
 	res = ft_putstr("0x");
 	if (res < 0)
 		return (-1);
 	count += res;
-	res = ft_puthex((unsigned long long)ptr);
+	res = ft_puthex((unsigned long long int)ptr);
 	if (res < 0)
 		return (-1);
 	count += res;

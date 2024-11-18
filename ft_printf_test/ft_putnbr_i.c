@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_i.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 16:50:04 by clu               #+#    #+#             */
-/*   Updated: 2024/11/18 12:18:05 by clu              ###   ########.fr       */
+/*   Created: 2024/11/18 12:49:09 by clu               #+#    #+#             */
+/*   Updated: 2024/11/18 12:53:25 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putstr(char *s)
+int	ft_putnbr_i(unsigned int n)
 {
-	int	count;
+	int		count;
 
-	if (!s)
-		s = "(null)";
 	count = 0;
-	while (*s)
-	{
-		count += ft_putchar(*s);
-		s++;
-	}
+	if (n >= 10)
+		count += ft_putnbr(n / 10);
+	count += ft_putchar(n % 10 + '0');
 	return (count);
 }

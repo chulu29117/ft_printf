@@ -1,10 +1,10 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"path": "../Libft"
 		},
 		{
-			"path": "../ft_printf"
+			"path": "."
 		}
 	],
 	"settings": {
