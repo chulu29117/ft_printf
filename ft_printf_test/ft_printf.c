@@ -6,23 +6,23 @@
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 10:19:31 by clu               #+#    #+#             */
-/*   Updated: 2024/11/18 13:46:23 by clu              ###   ########.fr       */
+/*   Updated: 2024/11/18 13:48:41 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// Prototypes ///////////////////////////////////////////////////////////////////////
-int		ft_printf(const char *str, ...);
-int		ft_format_check(char specifier, va_list args);
-int		ft_putchar(char c);
-int		ft_putstr(char *s);
-int		ft_putnbr(int n);
-int		ft_putnbr_i(unsigned int n);
-int		ft_puthex(unsigned long long n);
-int		ft_puthex_low(unsigned int n);
-int		ft_puthex_up(unsigned int n);
-int		ft_putptr(void *ptr);
+// // Prototypes ///////////////////////////////////////////////////////////////////////
+// int		ft_printf(const char *str, ...);
+// int		ft_format_check(char specifier, va_list args);
+// int		ft_putchar(char c);
+// int		ft_putstr(char *s);
+// int		ft_putnbr(int n);
+// int		ft_putnbr_i(unsigned int n);
+// int		ft_puthex(unsigned long long n);
+// int		ft_puthex_low(unsigned int n);
+// int		ft_puthex_up(unsigned int n);
+// int		ft_putptr(void *ptr);
 
 // ft_printf() ///////////////////////////////////////////////////////////////////////
 int	ft_printf(const char *str, ...)
@@ -162,8 +162,8 @@ void	ft_printf_test_unsigned(void)
 	ret2 = printf("printf(), print 123456: %u\n", 123456);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
-	ret1 = ft_printf("ft_printf(), print 0: %u\n", -1);
-	ret2 = printf("printf(), print 0: %u\n", -1);
+	ret1 = ft_printf("ft_printf(), print 0: %u\n", -12345u);
+	ret2 = printf("printf(), print 0: %u\n", -12345u);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 	printf("----------------------------------------------\n");
 }
@@ -239,144 +239,144 @@ int	main(void)
 }
 
 // Helper functions ///////////////////////////////////////////////////////////////////////
-int	ft_format_check(char specifier, va_list args)
-{
-	if (specifier == 'c')
-		return (ft_putchar(va_arg(args, int)));
-	else if (specifier == 's')
-		return (ft_putstr(va_arg(args, char *)));
-	else if (specifier == 'p')
-		return (ft_putptr(va_arg(args, void *)));
-	else if (specifier == 'd' || specifier == 'i')
-		return (ft_putnbr(va_arg(args, int)));
-	else if (specifier == 'i')
-		return (ft_putnbr(va_arg(args, int)));
-	else if (specifier == 'x')
-		return (ft_puthex_low(va_arg(args, unsigned int)));
-	else if (specifier == 'X')
-		return (ft_puthex_up(va_arg(args, unsigned int)));
-	else if (specifier == 'u')
-		return (ft_putnbr_i(va_arg(args, unsigned int)));
-	else if (specifier == '%')
-		return (ft_putchar('%'));
-	return (0);
-}
+// int	ft_format_check(char specifier, va_list args)
+// {
+// 	if (specifier == 'c')
+// 		return (ft_putchar(va_arg(args, int)));
+// 	else if (specifier == 's')
+// 		return (ft_putstr(va_arg(args, char *)));
+// 	else if (specifier == 'p')
+// 		return (ft_putptr(va_arg(args, void *)));
+// 	else if (specifier == 'd' || specifier == 'i')
+// 		return (ft_putnbr(va_arg(args, int)));
+// 	else if (specifier == 'i')
+// 		return (ft_putnbr(va_arg(args, int)));
+// 	else if (specifier == 'x')
+// 		return (ft_puthex_low(va_arg(args, unsigned int)));
+// 	else if (specifier == 'X')
+// 		return (ft_puthex_up(va_arg(args, unsigned int)));
+// 	else if (specifier == 'u')
+// 		return (ft_putnbr_i(va_arg(args, unsigned int)));
+// 	else if (specifier == '%')
+// 		return (ft_putchar('%'));
+// 	return (0);
+// }
 
-// print char //
-int	ft_putchar(char c)
-{
-	write(1, &c, 1);
-	return (1);
-}
+// // print char //
+// int	ft_putchar(char c)
+// {
+// 	write(1, &c, 1);
+// 	return (1);
+// }
 
-// print string //
-int	ft_putstr(char *s)
-{
-	int	count;
+// // print string //
+// int	ft_putstr(char *s)
+// {
+// 	int	count;
 	
-	if (!s)
-		s = "(null)";
-	count = 0;
-	while (*s)
-	{
-		count += ft_putchar(*s);
-		s++;
-	}
-	return (count);
-}
+// 	if (!s)
+// 		s = "(null)";
+// 	count = 0;
+// 	while (*s)
+// 	{
+// 		count += ft_putchar(*s);
+// 		s++;
+// 	}
+// 	return (count);
+// }
 
-// print int //
-int	ft_putnbr(int n)
-{
-	int		count;
+// // print int //
+// int	ft_putnbr(int n)
+// {
+// 	int		count;
 	
-	count = 0;
-	if (n == INT_MIN)
-	{
-		count += ft_putstr("-2147483648");
-		return (count);
-	}
-	if (n < 0)
-	{
-		count += ft_putchar('-');
-		n = -n;
-	}
-	if (n >= 10)
-		count += ft_putnbr(n / 10);
-	count += ft_putchar(n % 10 + '0');
-	return (count);
-}
+// 	count = 0;
+// 	if (n == INT_MIN)
+// 	{
+// 		count += ft_putstr("-2147483648");
+// 		return (count);
+// 	}
+// 	if (n < 0)
+// 	{
+// 		count += ft_putchar('-');
+// 		n = -n;
+// 	}
+// 	if (n >= 10)
+// 		count += ft_putnbr(n / 10);
+// 	count += ft_putchar(n % 10 + '0');
+// 	return (count);
+// }
 
-// print unsigned int //
-int	ft_putnbr_i(unsigned int n)
-{
-	int		count;
+// // print unsigned int //
+// int	ft_putnbr_i(unsigned int n)
+// {
+// 	int		count;
 
-	count = 0;
-	if (n >= 10)
-		count += ft_putnbr(n / 10);
-	count += ft_putchar(n % 10 + '0');
-	return (count);
-}
+// 	count = 0;
+// 	if (n >= 10)
+// 		count += ft_putnbr(n / 10);
+// 	count += ft_putchar(n % 10 + '0');
+// 	return (count);
+// }
 
-// print hexidecimal lower//
-int	ft_puthex(unsigned long long n)
-{
-	int		count;
-	char	*hex_digits;
+// // print hexidecimal lower//
+// int	ft_puthex(unsigned long long n)
+// {
+// 	int		count;
+// 	char	*hex_digits;
 
-	hex_digits = "0123456789abcdef";
-	count = 0;
-	if (n >= 16)
-		count += ft_puthex(n / 16);
-	count += ft_putchar(hex_digits[n % 16]);
-	return (count);
-}
+// 	hex_digits = "0123456789abcdef";
+// 	count = 0;
+// 	if (n >= 16)
+// 		count += ft_puthex(n / 16);
+// 	count += ft_putchar(hex_digits[n % 16]);
+// 	return (count);
+// }
 
-// print hexidecimal lower //
-int	ft_puthex_low(unsigned int n)
-{
-	int		count;
-	char	*hex_digits;
+// // print hexidecimal lower //
+// int	ft_puthex_low(unsigned int n)
+// {
+// 	int		count;
+// 	char	*hex_digits;
 
-	hex_digits = "0123456789abcdef";
-	count = 0;
-	if (n >= 16)
-		count += ft_puthex_low(n / 16);
-	count += ft_putchar(hex_digits[n % 16]);
-	return (count);
-}
+// 	hex_digits = "0123456789abcdef";
+// 	count = 0;
+// 	if (n >= 16)
+// 		count += ft_puthex_low(n / 16);
+// 	count += ft_putchar(hex_digits[n % 16]);
+// 	return (count);
+// }
 
-// print hexidecimal upper //
-int	ft_puthex_up(unsigned int n)
-{
-	int		count;
-	char	*hex_digits;
+// // print hexidecimal upper //
+// int	ft_puthex_up(unsigned int n)
+// {
+// 	int		count;
+// 	char	*hex_digits;
 
-	hex_digits = "0123456789ABCDEF";
-	count = 0;
-	if (n >= 16)
-		count += ft_puthex_up(n / 16);
-	count += ft_putchar(hex_digits[n % 16]);
-	return (count);
-}
+// 	hex_digits = "0123456789ABCDEF";
+// 	count = 0;
+// 	if (n >= 16)
+// 		count += ft_puthex_up(n / 16);
+// 	count += ft_putchar(hex_digits[n % 16]);
+// 	return (count);
+// }
 
-// print pointer address //
-int	ft_putptr(void *ptr)
-{
-	int	count;
-	int	res;
+// // print pointer address //
+// int	ft_putptr(void *ptr)
+// {
+// 	int	count;
+// 	int	res;
 
-	count = 0;
-	if (ptr == NULL)
-		return (ft_putstr("(nil)"));
-	res = ft_putstr("0x");
-	if (res < 0)
-		return (-1);
-	count += res;
-	res = ft_puthex((unsigned long long int)ptr);
-	if (res < 0)
-		return (-1);
-	count += res;
-	return (count);
-}
+// 	count = 0;
+// 	if (ptr == NULL)
+// 		return (ft_putstr("(nil)"));
+// 	res = ft_putstr("0x");
+// 	if (res < 0)
+// 		return (-1);
+// 	count += res;
+// 	res = ft_puthex((unsigned long long int)ptr);
+// 	if (res < 0)
+// 		return (-1);
+// 	count += res;
+// 	return (count);
+// }
