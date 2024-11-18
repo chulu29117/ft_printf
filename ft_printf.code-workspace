@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "."
+		},
+		{
+			"path": "../get_next_line"
 		}
 	],
 	"settings": {
