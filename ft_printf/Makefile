@@ -6,7 +6,7 @@
 #    By: clu <clu@student.hive.fi>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/13 09:56:36 by clu               #+#    #+#              #
-#    Updated: 2024/11/18 13:25:50 by clu              ###   ########.fr        #
+#    Updated: 2024/11/18 15:34:51 by clu              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ OBJECTS = $(SOURCES:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
+	@echo "Linking library $(NAME)"
 	@ar rcs $(NAME) $(OBJECTS)
 
 %.o: %.c
