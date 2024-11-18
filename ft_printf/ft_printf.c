@@ -6,19 +6,19 @@
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 10:19:31 by clu               #+#    #+#             */
-/*   Updated: 2024/11/15 17:27:44 by clu              ###   ########.fr       */
+/*   Updated: 2024/11/18 10:47:05 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 // Prototypes //
-int	ft_putchar_fd(char c, int fd);
-int	ft_putstr_fd(char *s, int fd);
-int	ft_putnbr_fd(int n, int fd);
+int	ft_putchar(char c);
+int	ft_putstr(char *s);
+int	ft_putnbr(int n);
 int	ft_format_check(char specifier, va_list args);
-int	ft_puthex_fd(unsigned long long num, int fd);
-int	ft_putptr_fd(char **ptr, int fd);
+int	ft_puthex(unsigned long long num);
+int	ft_putptr(void *ptr);
 
 // ft_printf() //
 int ft_printf(const char *str, ...)
@@ -38,9 +38,9 @@ int ft_printf(const char *str, ...)
 			count += ft_format_check(str[i], args);
 		}
 		else
-			count += ft_putchar_fd(str[i], 1);
+			count += ft_putchar(str[i]);
 		i++;
-	}	
+	}
 	va_end(args);
 	return (count);
 }
@@ -56,8 +56,11 @@ void	ft_printf_test(void)
 	ft_printf("ft_printf(), print a string: %s\n", "Hello, world!");
 	printf("printf(), print a string: %s\n\n", "Hello, world!");
 
-	ft_printf("ft_printf(), print a pointer: %p\n", &ft_printf_test);
-	printf("printf(), print a pointer: %p\n\n", &ft_printf_test);
+	ft_printf("ft_printf(), print a pointer: %p\n", &ft_putptr);
+	printf("printf(), print a pointer: %p\n\n", &ft_putptr);
+
+	ft_printf("ft_printf(), print a pointer: %p\n", NULL);
+	printf("printf(), print a pointer: %p\n\n", NULL);
 
 	ft_printf("ft_printf(), print a number: %d\n", 25);
 	printf("printf(), print a number: %d\n", 25);
@@ -73,76 +76,83 @@ int	main(void)
 int	ft_format_check(char specifier, va_list args)
 {
 	if (specifier == 'c')
-		return (ft_putchar_fd(va_arg(args, int), 1));
+		return (ft_putchar(va_arg(args, int)));
 	else if (specifier == 's')
-		return (ft_putstr_fd(va_arg(args, char *), 1));
+		return (ft_putstr(va_arg(args, char *)));
 	else if (specifier == 'p')
-		return (ft_putptr_fd(va_arg(args, char **), 1));
+		return (ft_putptr(va_arg(args, void *)));
 	else if (specifier == 'd')
-		return (ft_putnbr_fd(va_arg(args, int), 1));
+		return (ft_putnbr(va_arg(args, int)));
 	return (0);
 }
 
-int	ft_putchar_fd(char c, int fd)
+int	ft_putchar(char c)
 {
-	write(fd, &c, 1);
+	write(1, &c, 1);
 	return (1);
 }
 
-int	ft_putstr_fd(char *s, int fd)
+int	ft_putstr(char *s)
 {
 	int	count;
 	
 	if (!s)
 		s = "(null)";
+	count = 0;
 	while (*s)
 	{
-		ft_putchar_fd(*s, fd);
+		count += ft_putchar(*s);
 		s++;
-		count++;
 	}
 	return (count);
 }
 
-int	ft_putnbr_fd(int n, int fd)
+int	ft_putnbr(int n)
 {
 	int		count;
 	
 	count = 0;
 	if (n == -2147483648)
-		ft_putstr_fd("-2147483648", fd);
+		ft_putstr("-2147483648");
 	if (n < 0)
 	{
-		count += ft_putchar_fd('-', fd);
+		count += ft_putchar('-');
 		n = -n;
 	}
 	if (n >= 10)
-		count += ft_putnbr_fd(n / 10, fd);
-	count += ft_putchar_fd(n % 10 + '0', fd);
+		count += ft_putnbr(n / 10);
+	count += ft_putchar(n % 10 + '0');
 	return (count);
 }
 
-int	ft_puthex_fd(unsigned long long num, int fd)
+int	ft_puthex(unsigned long long num)
 {
-	int count;
+	int 	count;
 	char	*hex_digits;
 
 	hex_digits = "0123456789abcdef";
 	count = 0;
 
 	if (num >= 16)
-		count += ft_puthex_fd(num / 16, fd);
-	count += ft_putchar_fd(hex_digits[num % 16], fd);
+		count += ft_puthex(num / 16);
+	count += ft_putchar(hex_digits[num % 16]);
 	return (count);
 }
 
-int	ft_putptr_fd(char **ptr, int fd)
+int	ft_putptr(void *ptr)
 {
 	int	count;
+	int res;
 
+	if (ptr == NULL)
+		return (ft_putstr("(nil)"));
 	count = 0;
-	ft_putstr_fd("0x", fd);
-	count += 2;
-	count += ft_puthex_fd((unsigned long long)ptr, fd);
+	res = ft_putstr("0x");
+	if (res < 0)
+		return (-1);
+	count += res;
+	res = ft_puthex((unsigned long long)ptr);
+	if (res < 0)
+		return (-1);
 	return (count);
 }

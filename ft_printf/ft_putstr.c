@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:50:04 by clu               #+#    #+#             */
-/*   Updated: 2024/11/15 12:16:10 by clu              ###   ########.fr       */
+/*   Updated: 2024/11/18 10:48:13 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putstr_fd(char *s, int fd)
+int	ft_putstr(char *s)
 {
 	int	count;
 	
 	if (!s)
-		return (NULL);
+		s = "(null)";
+	count = 0;
 	while (*s)
 	{
-		ft_putchar_fd(*s, fd);
+		count += ft_putchar(*s);
 		s++;
-		count++;
 	}
 	return (count);
 }
+

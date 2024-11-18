@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putptr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 17:13:38 by clu               #+#    #+#             */
-/*   Updated: 2024/11/15 17:20:08 by clu              ###   ########.fr       */
+/*   Created: 2024/11/05 17:00:56 by clu               #+#    #+#             */
+/*   Updated: 2024/11/18 10:48:22 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_printf.h"
+#include "ft_printf.h"
 
-int	ft_puthex_fd(unsigned long long num, int fd)
+int	ft_putnbr(int n)
 {
-	int count;
-	char	*hex_digits;
-
-	hex_digits = "0123456789abcdef";
+	int		count;
+	
 	count = 0;
-
-	if (num >= 16)
-		count += ft_puthex_fd(num / 16, fd);
-	count += ft_putchar_fd(hex_digits[num % 16], fd);
+	if (n == -2147483648)
+		ft_putstr("-2147483648");
+	if (n < 0)
+	{
+		count += ft_putchar('-');
+		n = -n;
+	}
+	if (n >= 10)
+		count += ft_putnbr(n / 10);
+	count += ft_putchar(n % 10 + '0');
 	return (count);
 }
