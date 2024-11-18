@@ -6,7 +6,7 @@
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 10:19:31 by clu               #+#    #+#             */
-/*   Updated: 2024/11/18 13:56:48 by clu              ###   ########.fr       */
+/*   Updated: 2024/11/18 17:05:34 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,17 @@ void	ft_printf_test_string(void)
 	
 	int ret1 = 0;
 	int ret2 = 0;
+	char	*str;
 
 	ret1 = ft_printf("ft_printf(), print ""Hello, world!"": %s\n", "Hello, world!");
 	ret2 = printf("printf(), print ""Hello, world!"": %s\n", "Hello, world!");
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
-	ret1 = ft_printf("ft_printf(), print ""(null)"": %s\n", "(null)");
-	ret2 = printf("printf(), print ""(null)"": %s\n", "(null)");
+	str = NULL;
+	ret1 = ft_printf("ft_printf(), print ""(null)"": %s\n", str);
+	ret2 = printf("printf(), print ""(null)"": %s\n", str);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 	printf("----------------------------------------------\n");
-
 }
 
 // Test %p void * pointer with ft_printf() and printf() //
