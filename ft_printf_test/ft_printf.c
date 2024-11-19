@@ -6,7 +6,7 @@
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 10:19:31 by clu               #+#    #+#             */
-/*   Updated: 2024/11/18 17:05:34 by clu              ###   ########.fr       */
+/*   Updated: 2024/11/19 16:11:35 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,15 @@ void	ft_printf_test_char(void)
 	int ret2 = 0;
 
 	ret1 = ft_printf("ft_printf(), print 'A': %c\n", 'A');
-	ret2 = printf("printf(), print 'A': %c\n", 'A');
+	ret2 = printf("   printf(), print 'A': %c\n", 'A');
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
 	ret1 = ft_printf("ft_printf(), print 65 ('A'): %c\n", 65);
-	ret2 = printf("printf(), print 65 ('A'): %c\n", 65);
+	ret2 = printf("   printf(), print 65 ('A'): %c\n", 65);
+	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
+	
+	ret1 = ft_printf("ft_printf(), print special characters: %c%c %c\n", '!', '@', '#');
+	ret2 = printf("   printf(), print special characters: %c%c %c\n", '!', '@', '#');
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 	printf("----------------------------------------------\n");
 }
@@ -68,12 +72,16 @@ void	ft_printf_test_string(void)
 	char	*str;
 
 	ret1 = ft_printf("ft_printf(), print ""Hello, world!"": %s\n", "Hello, world!");
-	ret2 = printf("printf(), print ""Hello, world!"": %s\n", "Hello, world!");
+	ret2 = printf("   printf(), print ""Hello, world!"": %s\n", "Hello, world!");
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
+	ret1 = ft_printf("ft_printf(), print ""Empty string"": %s\n", "");
+	ret2 = printf("   printf(), print ""Empty string"": %s\n", "");
+	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
+	
 	str = NULL;
-	ret1 = ft_printf("ft_printf(), print ""(null)"": %s\n", str);
-	ret2 = printf("printf(), print ""(null)"": %s\n", str);
+	ret1 = ft_printf("ft_printf(), print a NULL string: %s\n", str);
+	ret2 = printf("   printf(), print a NULL string: %s\n", str);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 	printf("----------------------------------------------\n");
 }
@@ -87,15 +95,15 @@ void	ft_printf_test_pointer(void)
 	int ret2 = 0;
 
 	ret1 = ft_printf("ft_printf(), print &ft_putptr: %p\n", &ft_putptr);
-	ret2 = printf("printf(), print &ft_putptr: %p\n", &ft_putptr);
+	ret2 = printf("   printf(), print &ft_putptr: %p\n", &ft_putptr);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
 	ret1 = ft_printf("ft_printf(), print &ft_putchar: %p\n", &ft_putchar);
-	ret2 = printf("printf(), print &ft_putchar: %p\n", &ft_putchar);
+	ret2 = printf("   printf(), print &ft_putchar: %p\n", &ft_putchar);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
 	ret1 = ft_printf("ft_printf(), print NULL pointer: %p\n", NULL);
-	ret2 = printf("printf(), print NULL pointer: %p\n", NULL);
+	ret2 = printf("   printf(), print NULL pointer: %p\n", NULL);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 	printf("----------------------------------------------\n");
 }
@@ -109,11 +117,16 @@ void	ft_printf_test_decimal(void)
 	int ret2 = 0;
 
 	ret1 = ft_printf("ft_printf(), print 12: %d\n", 12);
-	ret2 = printf("printf(), print 12: %d\n", 12);
+	ret2 = printf("   printf(), print 12: %d\n", 12);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
 	ret1 = ft_printf("ft_printf(), print INT_MIN: %d\n", INT_MIN);
-	ret2 = printf("printf(), print INT_MIN: %d\n", INT_MIN);
+	ret2 = printf("   printf(), print INT_MIN: %d\n", INT_MIN
+	);
+	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
+
+	ret1 = ft_printf("ft_printf(), print INT_MAX: %d\n", INT_MAX);
+	ret2 = printf("   printf(), print INT_MAX: %d\n", INT_MAX);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 	printf("----------------------------------------------\n");
 }
@@ -127,15 +140,15 @@ void	ft_printf_test_integer(void)
 	int ret2 = 0;
 
 	ret1 = ft_printf("ft_printf(), print 123456: %i\n", 123456);
-	ret2 = printf("printf(), print 123456: %i\n", 123456);
+	ret2 = printf("   printf(), print 123456: %i\n", 123456);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
-	ret1 = ft_printf("ft_printf(), print -123456: %i\n", -123456);
-	ret2 = printf("printf(), print -123456: %i\n", -123456);
+	ret1 = ft_printf("ft_printf(), print INT_MIN: %i\n", INT_MIN);
+	ret2 = printf("   printf(), print INT_MIN: %i\n", INT_MIN);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
-	ret1 = ft_printf("ft_printf(), print 0123456: %i\n", 0123456);
-	ret2 = printf("printf(), print 0123456: %i\n", 0123456);
+	ret1 = ft_printf("ft_printf(), print INT_MAX: %i\n", INT_MAX);
+	ret2 = printf("   printf(), print INT_MAX: %i\n", INT_MAX);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 	printf("----------------------------------------------\n");
 }
@@ -148,11 +161,11 @@ void	ft_printf_test_unsigned(void)
 	int ret2 = 0;
 
 	ret1 = ft_printf("ft_printf(), print 123456: %u\n", 123456);
-	ret2 = printf("printf(), print 123456: %u\n", 123456);
+	ret2 = printf("   printf(), print 123456: %u\n", 123456);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
 	ret1 = ft_printf("ft_printf(), print 0: %u\n", -12345u);
-	ret2 = printf("printf(), print 0: %u\n", -12345u);
+	ret2 = printf("   printf(), print 0: %u\n", -12345u);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 	printf("----------------------------------------------\n");
 }
@@ -164,16 +177,16 @@ void	ft_printf_test_hex_lower(void)
 	int ret1 = 0;
 	int ret2 = 0;
 
-	ret1 = ft_printf("ft_printf(), print 255: %x\n", 255);
-	ret2 = printf("printf(), print 255: %x\n", 255);
+	ret1 = ft_printf("ft_printf(), print 15: %x\n", 15);
+	ret2 = printf("   printf(), print 15: %x\n", 15);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
 	ret1 = ft_printf("ft_printf(), print 0x1234abcdu: %x\n", 0x1234abcdu);
-	ret2 = printf("printf(), print 0x1234abcdu: %x\n", 0x1234abcdu);
+	ret2 = printf("   printf(), print 0x1234abcdu: %x\n", 0x1234abcdu);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
 	ret1 = ft_printf("ft_printf(), print -0x1234abcdu: %x\n", -0x1234abcdu);
-	ret2 = printf("printf(), print -0x1234abcdu: %x\n", -0x1234abcdu);
+	ret2 = printf("   printf(), print -0x1234abcdu: %x\n", -0x1234abcdu);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 	printf("----------------------------------------------\n");
 }
@@ -184,16 +197,16 @@ void	ft_printf_test_hex_upper(void)
 	int ret1 = 0;
 	int ret2 = 0;
 
-	ret1 = ft_printf("ft_printf(), print 255: %X\n", 255);
-	ret2 = printf("printf(), print 255: %X\n", 255);
+	ret1 = ft_printf("ft_printf(), print 15: %X\n", 15);
+	ret2 = printf("   printf(), print 15: %X\n", 15);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
 	ret1 = ft_printf("ft_printf(), print 0x1234abcdu: %X\n", 0x1234abcdu);
-	ret2 = printf("printf(), print 0x1234abcdu: %X\n", 0x1234abcdu);
+	ret2 = printf("   printf(), print 0x1234abcdu: %X\n", 0x1234abcdu);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
 	ret1 = ft_printf("ft_printf(), print -0x1234abcdu: %X\n", -0x1234abcdu);
-	ret2 = printf("printf(), print -0x1234abcdu: %X\n", -0x1234abcdu);
+	ret2 = printf("   printf(), print -0x1234abcdu: %X\n", -0x1234abcdu);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 	printf("----------------------------------------------\n");
 }
@@ -207,7 +220,7 @@ void	ft_printf_test_percent(void)
 	int ret2 = 0;
 
 	ret1 = ft_printf("ft_printf(), print '%%': %%\n");
-	ret2 = printf("printf(), print '%%': %%\n");
+	ret2 = printf("   printf(), print '%%': %%\n");
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 	printf("----------------------------------------------\n");
 }
