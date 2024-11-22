@@ -6,7 +6,7 @@
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 10:19:31 by clu               #+#    #+#             */
-/*   Updated: 2024/11/22 13:10:32 by clu              ###   ########.fr       */
+/*   Updated: 2024/11/22 15:19:59 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,12 +248,12 @@ void	ft_printf_test_percent(void)
 	ret2 = printf("   printf(), print '%%': %%\n");
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
-	// ret1 = ft_printf("ft_printf(), print '%%' at end: %");
-	// ret2 = printf("   printf(), print '%%' at end: %");
+	// ret1 = ft_printf("ft_printf(), print '%%' incomplete: %");
+	// ret2 = printf("   printf(), print '%%' incomplete: %");
 	// printf("\nReturn value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
-
-	// ret1 = ft_printf("ft_printf(), print '%    '");
-	// ret2 = printf("   printf(), print '%    '");
+	
+	// ret1 = ft_printf("ft_printf(), print '%%' invalid: %  q");
+	// ret2 = printf("   printf(), print '%%' invalid: %  q");
 	// printf("\nReturn value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 	printf("----------------------------------------------\n");
 }
