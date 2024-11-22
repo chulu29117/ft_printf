@@ -6,7 +6,7 @@
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 10:19:31 by clu               #+#    #+#             */
-/*   Updated: 2024/11/22 15:19:59 by clu              ###   ########.fr       */
+/*   Updated: 2024/11/22 16:28:50 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,7 @@ void	ft_printf_test_decimal(void)
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
 	ret1 = ft_printf("ft_printf(), print INT_MIN: %d\n", INT_MIN);
-	ret2 = printf("   printf(), print INT_MIN: %d\n", INT_MIN
-	);
+	ret2 = printf("   printf(), print INT_MIN: %d\n", INT_MIN);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
 	ret1 = ft_printf("ft_printf(), print INT_MAX: %d\n", INT_MAX);
@@ -248,8 +247,8 @@ void	ft_printf_test_percent(void)
 	ret2 = printf("   printf(), print '%%': %%\n");
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 
-	// ret1 = ft_printf("ft_printf(), print '%%' incomplete: %");
-	// ret2 = printf("   printf(), print '%%' incomplete: %");
+	// ret1 = ft_printf("ft_printf(), print %");
+	// ret2 = printf("   printf(), print %");
 	// printf("\nReturn value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 	
 	// ret1 = ft_printf("ft_printf(), print '%%' invalid: %  q");
