@@ -6,7 +6,7 @@
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 10:19:31 by clu               #+#    #+#             */
-/*   Updated: 2024/11/22 16:33:08 by clu              ###   ########.fr       */
+/*   Updated: 2024/11/22 16:44:16 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,16 @@ int	ft_printf(const char *str, ...)
 	count = 0;
 	while (str[i])
 	{
-		if (str[i] == '%' && str[i + 1])
+		if (str[i] == '%')
 		{
-			if (!ft_strchr("cspdiuxX%", str[++i]))
-				return (va_end(args), -1);
-			count += ft_format_check(str[i], args);
+			// Check if the format specifier is valid.
+			if (str[i + 1] == '\0' || !ft_strchr("cspdiuxX%", str[i + 1]))
+				return (va_end(args), -1);	// Return -1 if the format specifier is invalid.
+			// Check if the format specifier is valid and call the format check function.
+			else if (ft_strchr("cspdiuxX%", str[i + 1]))
+				count += ft_format_check(str[++i], args);
 		}
-		else if (str[i] != '%')
+		else
 			count += ft_putchar(str[i]);
 		i++;
 	}
@@ -40,6 +43,7 @@ int	ft_printf(const char *str, ...)
 	return (count);
 }
 
+// ft_strchr to find the specifier in the format string //
 static char	*ft_strchr(const char *s, int c)
 {
 	int				i;
