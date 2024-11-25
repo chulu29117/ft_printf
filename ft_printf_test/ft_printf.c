@@ -6,7 +6,7 @@
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 10:19:31 by clu               #+#    #+#             */
-/*   Updated: 2024/11/22 16:44:16 by clu              ###   ########.fr       */
+/*   Updated: 2024/11/25 13:37:24 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static char	*ft_strchr(const char *s, int c);
 // ft_printf() ///////////////////////////////////////////////////////////////////////
 int	ft_printf(const char *str, ...)
 {
-	va_list	args;
+	va_list	args;	// va_list type to hold the variable arguments.
 	int		i;
 	int		count;
 
-	va_start(args, str);
+	va_start(args, str);	// Initialize the va_list.
 	i = 0;
 	count = 0;
 	while (str[i])
@@ -105,6 +105,7 @@ void	ft_printf_test_string(void)
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 	
 	str = NULL;
+	str = "/0";
 	ret1 = ft_printf("ft_printf(), print a NULL string: %s\n", str);
 	ret2 = printf("   printf(), print a NULL string: %s\n", str);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);

@@ -6,7 +6,7 @@
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 17:03:14 by clu               #+#    #+#             */
-/*   Updated: 2024/11/18 13:35:45 by clu              ###   ########.fr       */
+/*   Updated: 2024/11/25 13:37:53 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	ft_format_check(char specifier, va_list args)
 {
 	// Specifier 'c' - print character //
 	if (specifier == 'c')
-		return (ft_putchar(va_arg(args, int)));
+		return (ft_putchar(va_arg(args, int)));		// va_arg() to get the next argument.
 	// Specifier 's' - print string //
 	else if (specifier == 's')
-		return (ft_putstr(va_arg(args, char *)));
+		return (ft_putstr(va_arg(args, char *)));	// va_arg() to get the next argument.
 	// Specifier 'p' - void *pointer in hexadecimal format //
 	else if (specifier == 'p')
 		return (ft_putptr(va_arg(args, void *)));
