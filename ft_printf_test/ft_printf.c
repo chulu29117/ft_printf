@@ -6,7 +6,7 @@
 /*   By: clu <clu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 10:19:31 by clu               #+#    #+#             */
-/*   Updated: 2024/11/25 13:37:24 by clu              ###   ########.fr       */
+/*   Updated: 2024/11/25 14:07:24 by clu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	ft_printf_test_string(void)
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
 	
 	str = NULL;
-	str = "/0";
+	//str = "/0";
 	ret1 = ft_printf("ft_printf(), print a NULL string: %s\n", str);
 	ret2 = printf("   printf(), print a NULL string: %s\n", str);
 	printf("Return value: ft_printf() = %d / printf() = %d\n\n", ret1, ret2);
